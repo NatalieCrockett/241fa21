@@ -7,8 +7,10 @@
 
 # Stacks implement a first-in-last-out storage. Only the most recently added (pushed) element may be seen (using peek) or removed (pop)
 # This behavior is tested by the autograder.
+# Do not submit an assignment that does not complete the autograder without triggering an error message.
+# The provided code, as is, meets this requirement.
 
-# This assignment's solutions will not be covered in class, but will be eligible for resubmission.
+# This assignment's solutions will not be covered in class, but the assignment will be eligible for resubmission.
 # Instead this assignment is MANDATORY:
 # I will require submission of a version of HW2 (or HW1) that receives a 100 from the autograder to submit your final grade.
 # You may collaborate with classmates or use online resources, but please cite all sources of help after this comment:
