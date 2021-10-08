@@ -18,34 +18,41 @@
 class Stack:
 
 	# an initializer to create a new stack object
-	def __init__(self):
-		pass
+	def __init__(self, initarg, n):
+		self.data = initarg
+        self.next = n
 		
 	# given some data, update the stack to include that data
 	# input: data
 	# output: nothing
 	# side effect: data is now the first piece of data in the stack
 	def push(self,data):
-		pass
+		return Stack(self, data, None)
 		
 	# return the first piece of data without altering the stack
 	# input: nothing
 	# output: data
 	# side effect: none
 	def peek(self):
-		pass
+		return self.data
 	
 	# remove and return the first piece of data in the stack
 	# input: nothing
 	# output: data
 	# side effect: data is no longer in stack
-	def pop(self):
-		pass
+	def pop(self, arg):
+		if arg == self.data:
+            return self.next
 	
 	# return True if there is no data in the stack
 	def empty(self):
-		pass
+		if self.data == None:
+            return True
 		
 	# return the number of data objects currently in the stack
 	def size(self):
-		pass
+		if self.next == None:
+            size_of_next = self.next.size()
+        else:
+            size_of_next = 0
+        return 1 + size_of_next
