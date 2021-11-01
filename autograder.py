@@ -1,7 +1,6 @@
 # Autograder
 
-# This will attempt to perform intended tasks for Stack. It will only use naturals, for simplicity.
-# It is not required that your stack work with values other than naturals or only with naturals.
+# This will attempt to perform intended tasks for HashTable. It will only use naturals, for simplicity.
 # For each task, the autograder will:
 #  - Define some expected behavior for some use case
 #  - Perform the use case
@@ -16,51 +15,30 @@ def singleTest(desc, target, val, pts):
 	print(" - Observed Value: " + str(val))
 	score = 0
 	if (val == target):
-		score = 5
-		pts = pts + 5
-	print("POINTS: This section: " + str(score).zfill(2) + "/05 Total: " + str(pts).zfill(3) + "/100\n")	
+		score = 20
+		pts = pts + score
+	print("POINTS: This section: " + str(score).zfill(2) + "/10 Total: " + str(pts).zfill(3) + "/100\n")	
 	return pts
 
 points = 0
 
-print("\n --- AUTOGRADER: STACK ---\n")
-from stack import Stack
-s = Stack()
+print("\n --- AUTOGRADER: HashTable ---\n")
+from hash import HashTable
+t = HashTable()
+# This generates a random list to be used
+import random
+l = list(set([random.randint(1,9999) for i in range(100)])) # use set() to remove duplicates
 
-print("\nAUTOGRADER: Empty Stack Testing: 25 pts\n")
-points = singleTest("Checking Stack().empty() is True", True, s.empty(), points)
-print(type(s))
-print(s.size())
-points = singleTest("Checking Stack().size()  is zero", 0, s.size(), points)
-points = singleTest("Checking Stack().peek()  is None", None, s.peek(), points)
-points = singleTest("Checking Stack().pop()   is None", None, s.pop(), points)
-s.push(5)
-points = singleTest("Checking Stack() is still a stack after a push.", type(Stack()), type(s), points)
+print("\nAUTOGRADER: Insert/Contains Testing: 60 pts\n")
+points = singleTest("Checking empty contains nothing", True, all([not t.contains(x) for x in range(9999)]), points)
+[t.insert(x) for x in l]
+points = singleTest("Checking false contains after insert", True, all([not t.contains(x) or x in l for x in range(9999)]), points)
+points = singleTest("Checking true contains after insert", True, all([t.contains(x) for x in l]), points)
 
-print("\nAUTOGRADER: Singleton Stack Testing: 40 pts\n")
-points = singleTest("Checking after push that .empty() is False", False, s.empty(), points)
-points = singleTest("Checking after push that .size()  is equal to one", 1, s.size(), points)
-points = singleTest("Checking after pushing 5 that .peek() is 5", 5, s.peek(), points)
-points = singleTest("Checking that stack is unaltered by peek by checking .size()", 1, s.size(), points)
-points = singleTest("Checking that .pop() 5", 5, s.pop(), points)
-points = singleTest("Checking that stack is altered by pop by checking .size()", 0, s.size(), points)
-points = singleTest("Checking that stack is altered by pop by checking .peek()", None, s.peek(), points)
-points = singleTest("Checking that stack is altered by pop by checking .pop()", None, s.pop(), points)
-
-
-print("\nAUTOGRADER: Order Preservation Testing: 35 pts\n")
-s= Stack()
-for i in [1,2,3,4,5]:
-	s.push(i)
-points = singleTest("Checking peek is 5 after adding 1 through 5", 5, s.peek(), points)
-points = singleTest("Checking pop is 5", 5, s.pop(), points)
-points = singleTest("Checking pop is 4", 4, s.pop(), points)
-points = singleTest("Checking pop is 3", 3, s.pop(), points)
-s.push(6)
-points = singleTest("Checking that after pushing 6, .pop() is 6", 6, s.pop(), points)
-points = singleTest("Checking pop is 2", 1, s.pop(), points)
-points = singleTest("Checking pop is 1", 1, s.pop(), points)
-points = singleTest("Checking pop is None", None, s.pop(), points)
-
-
+print("\nAUTOGRADER: Remove/Contains Testing: 40 pts\n")
+temp = l[:10] # get eleven elements (excpecting one duplicate)
+l = l[10:] # get the remaining elements
+[t.remove(x) for x in temp]
+points = singleTest("Checking false contains after remove", True, all([not t.contains(x) or x in l for x in range(9999)]), points)
+points = singleTest("Checking true contains after remove", True, all([t.contains(x) for x in l]), points)
 	
