@@ -17,7 +17,7 @@ def singleTest(desc, target, val, pts):
 	if (val == target):
 		score = 20
 		pts = pts + score
-	print("POINTS: This section: " + str(score).zfill(2) + "/10 Total: " + str(pts).zfill(3) + "/100\n")	
+	print("POINTS: This section: " + str(score).zfill(2) + "/20 Total: " + str(pts).zfill(3) + "/100\n")	
 	return pts
 
 points = 0
